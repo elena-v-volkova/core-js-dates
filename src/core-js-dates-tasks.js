@@ -299,7 +299,7 @@ function getWorkSchedule(/* period, countWorkDays, countOffDays */) {
  * Date(2022, 2, 1) => false
  * Date(2020, 2, 1) => true
  */
-function isLeapYear(/*date*/) {
+function isLeapYear(/* date */) {
   throw new Error('Not implemented');
 }
 
