@@ -228,8 +228,23 @@ function getWeekNumberByDate(/* date */) {
  * Date(2024, 0, 13) => Date(2024, 8, 13)
  * Date(2023, 1, 1) => Date(2023, 9, 13)
  */
-function getNextFridayThe13th(/* date */) {
-  throw new Error('Not implemented');
+function getNextFridayThe13th(date) {
+  let year = date.getFullYear();
+  let month = date.getMonth();
+
+  while (true) {
+    const new13Date = new Date(year, month, 13);
+
+    if (new13Date > date && new13Date.getDay() === 5) {
+      return new13Date;
+    }
+
+    month += 1;
+    if (month > 11) {
+      month = 0;
+      year += 1;
+    }
+  }
 }
 
 /**
@@ -243,8 +258,11 @@ function getNextFridayThe13th(/* date */) {
  * Date(2024, 5, 1) => 2
  * Date(2024, 10, 10) => 4
  */
-function getQuarter(/* date */) {
-  throw new Error('Not implemented');
+function getQuarter(date) {
+  const newDate = new Date(date);
+  const month = newDate.getMonth();
+
+  return Math.floor(month / 3) + 1;
 }
 
 /**
@@ -281,8 +299,13 @@ function getWorkSchedule(/* period, countWorkDays, countOffDays */) {
  * Date(2022, 2, 1) => false
  * Date(2020, 2, 1) => true
  */
-function isLeapYear(/* date */) {
-  throw new Error('Not implemented');
+function isLeapYear(date) {
+  const year = date.getFullYear();
+
+  if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+    return true;
+  }
+  return false;
 }
 
 module.exports = {
